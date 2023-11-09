@@ -3,17 +3,17 @@ import { useContext } from "react";
 import {
   Header,
   CreateTodo,
-  CreateTodoButtom,
+  CreateTodoButton,
   ToDoFilter,
   ToDoSearch,
   ToDoList,
 } from "components";
 import { TodoProvider } from "provider/TodoContext/";
 import { ModalContext } from "./components/Provider/Modal";
-
+import { TodoForm } from "./components/TodoForm";
 
 function App() {
-  const {OpenModal}= useContext(ModalContext)
+  const { OpenModal } = useContext(ModalContext);
   return (
     <div
       className="todoapp"
@@ -22,12 +22,14 @@ function App() {
       <TodoProvider>
         <Header />
         <ToDoSearch />
-        <CreateTodoButtom />
         <ToDoList />
         <ToDoFilter />
-        { OpenModal &&
-            <CreateTodo>leo</CreateTodo>
-        }
+        {OpenModal && (
+          <CreateTodo>
+            <TodoForm />
+          </CreateTodo>
+        )}
+        <CreateTodoButton />
       </TodoProvider>
     </div>
   );

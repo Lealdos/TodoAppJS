@@ -1,6 +1,7 @@
+import './index.css'
 import { createPortal } from "react-dom";
 
-function CreateTodo({ children }) {
+export function CreateTodo({ children }) {
     return createPortal(
       <div className="Modal">
         {children}
@@ -9,4 +10,3 @@ function CreateTodo({ children }) {
     );
   }
   
-  export { CreateTodo };
