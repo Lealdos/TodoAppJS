@@ -29,6 +29,9 @@ export function useTodos() {
     fetchData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const AddTodo = (task,details=null) => {
+      
+  }
   const completeToDoHandler = (id) => {
     const newTodos = [...todos];
     const todosIndex = newTodos.findIndex((todos) => todos.id === id);
@@ -44,7 +47,7 @@ export function useTodos() {
   return {
     todos,
     completeToDoHandler,
-    handleRemove,
+    handleRemove,AddTodo,
     saveTodosLocalStorage,
     searchValue,
     setSearchValue,

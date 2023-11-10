@@ -6,7 +6,10 @@ export function CreateTodoButton() {
   const { OpenModal, setOpenModal } = useContext(ModalContext);
   return (
     <div className="allbutton">
+      <p>
+
       {OpenModal? 'Esc' : 'Add task'}
+      </p>
       <button
         className="CreateTodoButton"
         style={{ cursor: "pointer", fontSize: "2em" }}

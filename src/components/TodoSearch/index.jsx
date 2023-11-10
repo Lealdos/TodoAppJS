@@ -11,6 +11,7 @@ function ToDoSearch() {
         type="text"
         placeholder="Ex: Buy 3 apple"
         value={searchValue}
+        style={{borderRadius:'0.5em', marginLeft:'1em'}}
         onChange={(event) => {
           setSearchValue(event.target.value);
         }}

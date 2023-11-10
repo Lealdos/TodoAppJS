@@ -41,3 +41,11 @@ button {
     z-index: 1;
     font-size: larger;
   }
+
+  .allbutton p{
+    display: none;
+  }
+
+  .allbutton:hover  p{
+    display: block;
+  }

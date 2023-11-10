@@ -1,7 +1,7 @@
 import './index.css'
 import { createPortal } from "react-dom";
 
-export function CreateTodo({ children }) {
+export function Modal({ children }) {
     return createPortal(
       <div className="Modal">
         {children}
