@@ -12,7 +12,7 @@ export function CreateTodoButton() {
       </p>
       <button
         className="CreateTodoButton"
-        style={{ cursor: "pointer", fontSize: "2em" }}
+        style={{ cursor: "pointer", fontSize: "2.5em" }}
         onClick={() => setOpenModal(!OpenModal)}
       >
         <AiOutlinePlusCircle />
