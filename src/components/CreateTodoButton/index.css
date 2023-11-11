@@ -7,15 +7,14 @@ button {
 
 
 .CreateTodoButton {
-    background-color: red;
-    background-size: auto;
+    background-color: transparent;
     box-shadow: 0px 5px 20px rgba(250, 97, 97, 0.5);
     border: none;
     border-radius: 50%;
     cursor: pointer;
     font-size: 50px;
     font-weight: bold;
-    color: #FAFAFA;
+    color: #fd0d0d;
     display: flex;
     justify-content: center;
     align-items: center;

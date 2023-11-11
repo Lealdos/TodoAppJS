@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
-import { createContext } from "react";
-import { useTodos } from "assets/Hooks/";
+import { createContext,useState } from "react";
 
 export const TodoContext = createContext();
 
 export function TodoProvider({ children }) {
-  const { setSearchValue, searchValue } = useTodos();
+  const [searchValue, setSearchValue] = useState('');
+  const [todos,setTodos]= useState([])
   return (
-    <TodoContext.Provider value={{ setSearchValue, searchValue }}>
+    <TodoContext.Provider value={{ setSearchValue, searchValue,todos,setTodos }}>
       {children}
     </TodoContext.Provider>
   );

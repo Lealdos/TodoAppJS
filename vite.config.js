@@ -14,6 +14,8 @@ export default defineConfig({
       pages: path.resolve(__dirname, "./src/pages"),
       assets: `${path.resolve(__dirname, "./src/assets")}`,
       provider: `${path.resolve(__dirname, "./src/components/Provider")}`,
+      Hooks: `${path.resolve(__dirname, "./src/assets/Hooks")}`,
+
 
     },
   },

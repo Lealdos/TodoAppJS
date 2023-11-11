@@ -17,19 +17,19 @@ function App() {
   return (
     <div
       className="todoapp"
-      style={{ borderRadius: "20% 10%", padding: "1em" }}
+      style={{ borderRadius: "20% 10%", padding: "0.2em",marginBottom:'0.5em'}}
     >
       <TodoProvider>
         <Header />
         <ToDoSearch />
         <ToDoList />
-        <ToDoFilter />
         <CreateTodoButton />
         {OpenModal && (
           <Modal>
             <TodoForm />
           </Modal>
         )}
+        <ToDoFilter />
       </TodoProvider>
     </div>
   );

@@ -1,12 +1,14 @@
-import { useState,useEffect } from 'react';
+/* eslint-disable no-unused-vars */
+import { useState,useEffect,useContext } from 'react';
 import {
   getStoredTodos,
   storedTodos,
 } from 'assets/utils/KeepTodosPersiten';
+import { TodoContext } from '../../components/Provider/TodoContext';
+
 
 export function useTodos() {
-  const [todos, setTodos] = useState([])
-  const [searchValue, setSearchValue] = useState('');
+  const {todos,setTodos}=useContext(TodoContext)
   const [isLoading,setIsLoading] = useState(true)
   const saveTodosLocalStorage = (newTodos) => {
     storedTodos(newTodos);
@@ -20,7 +22,7 @@ export function useTodos() {
           const storedTodos = await getStoredTodos();
           setIsLoading(!isLoading)
           setTodos(storedTodos);
-        }, 2000);
+        }, 500);
       } catch (error) {
         console.error('Error fetching todos:', error);
       }
@@ -29,8 +31,15 @@ export function useTodos() {
     fetchData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const AddTodo = (task,details=null) => {
-      
+    console.log(todos.length)
+    const prueba = {id: todos.length+1, text:task,completed:false }
+    
+    const newTodos = [...todos,prueba];
+    saveTodosLocalStorage(newTodos);
+    setTodos(newTodos)
+    console.log(todos)
   }
   const completeToDoHandler = (id) => {
     const newTodos = [...todos];
@@ -49,8 +58,6 @@ export function useTodos() {
     completeToDoHandler,
     handleRemove,AddTodo,
     saveTodosLocalStorage,
-    searchValue,
-    setSearchValue,
     isLoading
   };
 }

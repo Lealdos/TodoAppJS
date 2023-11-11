@@ -2,7 +2,7 @@
 import { ToDoItem } from "components/TodoItem";
 import { useTodos } from "assets/Hooks";
 import { Loader } from "components/Loader";
-import "./index.module.css";
+import "./index.css";
 import { useContext } from "react";
 import { TodoContext } from "provider/TodoContext/";
 
@@ -26,7 +26,8 @@ function ToDoList() {
       <h2>
         Task done <span>{completedTodos}</span> of <span>{totalTodos}</span>
       </h2>
-      {isLoading || allTodos.length < 1 ? (
+      {(!isLoading && searchedTodos.length===0) && 'Create your first task'}
+      {isLoading ? (
         <Loader />
       ) : (
         sortedSearchedTodos.map((ToDo) => {

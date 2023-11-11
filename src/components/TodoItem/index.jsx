@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 function ToDoItem(props) {
   const { completed, text, onCompleted, handleRemove } = props;
   return (
