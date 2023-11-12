@@ -18,7 +18,7 @@ export function TodoForm  ()  {
         
             <form action="put" className="TodoForm" onSubmit={(e)=>handleFormSubmit(e)}>
                 <label htmlFor=""> Create your new task</label>
-                <textarea placeholder='Find chamba' name="Task" required></textarea>
+                <textarea placeholder='Find chamba' name="Task" required style={{scrollbarColor:'red'}}></textarea>
                 <button  type='submit'> Create</button>
             </form>
         

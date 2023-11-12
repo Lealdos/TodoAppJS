@@ -6,7 +6,6 @@ export function ModalProvider({ children }) {
   const [OpenModal, setOpenModal] = useState(false);
   return (
     <ModalContext.Provider value={{OpenModal, setOpenModal }}>
-      
       {children}
     </ModalContext.Provider>
   );
