@@ -1,9 +1,9 @@
 .Modal {
-    background-color: rgba(221, 224, 230, 0.8);
+    background-color: rgba(219, 219, 219, 0.774);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(230, 17, 17);
+    color: rgb(255, 0, 0);
     position: fixed;
     top: 0;
     left: 0;

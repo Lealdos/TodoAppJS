@@ -9,6 +9,8 @@
   background-color: #fff;
   padding: 2em 0.5em;
   gap: 0.8em;
+  position: fixed;
+  top: 10em;
 }
 
 label {
