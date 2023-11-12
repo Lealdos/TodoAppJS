@@ -4,7 +4,8 @@ import react from '@vitejs/plugin-react'
 import path from "path";
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => {
+  const config = {
   plugins: [react()],
   resolve: {
     alias: {
@@ -18,5 +19,12 @@ export default defineConfig({
 
 
     },
-  },base:'/TodoAppJS/'
+  }, base: '/',
+}
+
+if (command !== 'serve') {
+  config.base = '/TodoAppJS/'
+}
+
+return config
 });
