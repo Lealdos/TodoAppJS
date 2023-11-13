@@ -48,3 +48,9 @@ button {
   .allbutton:hover  p{
     display: block;
   }
+
+  @media (max-width: 580px) {
+    .allbutton p{
+      display: block;
+    }
+  }
