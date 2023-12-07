@@ -1,37 +1,49 @@
 import "./App.css";
-import { useContext } from "react";
-import {
-  Header,
-  CreateTodoButton,
-  ToDoFilter,
-  ToDoSearch,
-  ToDoList,Modal
-} from "components";
+import { ToDoFilter, ToDoSearch, ToDoList, NavBar } from "components";
 import { TodoProvider } from "provider/TodoContext/";
-import { ModalContext } from "provider/Modal";
+import { ModalProvider } from "./components/Provider/Modal";
 import { TodoForm } from "./components/TodoForm";
-
+import { Modal } from "./components/Provider/Modal/modal";
+import { useModal } from "./assets/Hooks/useModal";
 
 function App() {
-  const { OpenModal } = useContext(ModalContext);
+  const [openModal, setopenModal, createFormOpen, setcreateFormOpen] =
+    useModal();
   return (
-    <div
-      className="todoapp"
-      style={{ borderRadius: "20% 10%", padding: "0.2em",marginBottom:'0.5em'}}
-    >
-      <TodoProvider>
-        <Header />
-        <ToDoSearch />
-        <ToDoList />
-        <CreateTodoButton />
-        {OpenModal && (
-          <Modal>
-            <TodoForm />
+    <ModalProvider>
+      <NavBar />
+      <div
+        className="todoapp"
+        style={{
+          borderRadius: "20% 10%",
+          padding: "0.2em",
+          marginBottom: "0.5em",
+        }}
+      >
+        <TodoProvider>
+          <h1>Task List</h1>
+          <ToDoSearch on />
+          <ToDoList />
+          <ToDoFilter />
+
+          <Modal
+            openStatus={openModal}
+            setOpenModal={setopenModal}
+            openItem={createFormOpen}
+            setOpenItem={setcreateFormOpen}
+          >
+            {openModal && createFormOpen && (
+              <TodoForm
+                openStatus={openModal}
+                setOpenModal={setopenModal}
+                openForm={createFormOpen}
+                setOpenForm={setcreateFormOpen}
+              />
+            )}
           </Modal>
-        )}
-        <ToDoFilter />
-      </TodoProvider>
-    </div>
+        </TodoProvider>
+      </div>
+    </ModalProvider>
   );
 }
 

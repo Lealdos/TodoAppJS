@@ -37,20 +37,19 @@ button {
     position: fixed;
     bottom: 2em;
     right: 2em;
-    z-index: 1;
     font-size: larger;
   }
 
-  .allbutton p{
+  .allbutton span{
     display: none;
   }
 
-  .allbutton:hover  p{
+  .allbutton:hover  span{
     display: block;
   }
 
   @media (max-width: 580px) {
-    .allbutton p{
+    .allbutton span{
       display: block;
     }
   }

@@ -1,4 +1,3 @@
-export * from './Header';
 export * from './TodoItem';
 export * from './TodoSearch';
 export * from './TodoFilter';
@@ -7,3 +6,6 @@ export * from './CreateTodoButton';
 export * from './Loader';
 export * from './TodoCardLoading';
 export * from 'provider/Modal/modal'
+export * from './NavBar'
+export * from './AuthModal'
+export * from './TodoForm'

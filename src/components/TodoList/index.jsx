@@ -22,6 +22,7 @@ function ToDoList() {
     (firstTask, secondTaks) => firstTask.completed - secondTaks.completed
     );
     return (
+      
       <ul className="todo-list">
       <h2>
         Task done <span>{completedTodos}</span> of <span>{totalTodos}</span>

@@ -34,9 +34,9 @@ export function useTodos() {
 
   const AddTodo = (task,details=null) => {
     console.log(todos.length)
-    const prueba = {id: todos.length+1, text:task,completed:false }
+    const newTask = {id: todos.length+1, text:task,completed:false }
     
-    const newTodos = [...todos,prueba];
+    const newTodos = [...todos,newTask];
     saveTodosLocalStorage(newTodos);
     setTodos(newTodos)
     console.log(todos)

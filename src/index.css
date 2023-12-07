@@ -1,5 +1,6 @@
 html {
   filter: invert(1);
+  height: 100vh;
 }
 
 #root {
