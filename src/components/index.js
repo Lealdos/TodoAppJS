@@ -7,5 +7,4 @@ export * from './Loader';
 export * from './TodoCardLoading';
 export * from 'provider/Modal/modal'
 export * from './NavBar'
-export * from './AuthModal'
 export * from './TodoForm'
