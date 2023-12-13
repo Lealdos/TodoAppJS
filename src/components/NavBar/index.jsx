@@ -1,13 +1,11 @@
 /* eslint-disable react/prop-types */
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { supabase } from "home/SupabaseClient/client";
 import styles from "./index.module.css";
 import { FaGithub } from "react-icons/fa";
 import { GoSignIn, GoSignOut } from "react-icons/go";
 import { FaLinkedin } from "react-icons/fa6";
 import { Modal } from "components";
 import { useModal } from "../../assets/Hooks/useModal";
+import { AuthForm } from "components";
 
 export function NavBar({ sesion = false }) {
   const [openModal, setOpenModal, openAuth, setOpenAuth] = useModal();
@@ -37,15 +35,8 @@ export function NavBar({ sesion = false }) {
             openItem={openAuth}
             setOpenItem={setOpenAuth}
           >
-            <div className={styles.authbackground}>
-              <Auth
-                supabaseClient={supabase}
-                appearance={{ theme: ThemeSupa }}
-                providers={["google", "github"]}
-                theme="dark"
-                magicLink
+              <AuthForm
               />
-            </div>
           </Modal>
         )}
       </nav>

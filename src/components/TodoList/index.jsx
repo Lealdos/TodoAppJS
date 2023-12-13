@@ -27,7 +27,8 @@ function ToDoList() {
       <h2>
         Task done <span>{completedTodos}</span> of <span>{totalTodos}</span>
       </h2>
-      {(!isLoading && searchedTodos.length===0) && 'Create your first task'}
+      <br />
+      {(!isLoading && searchedTodos.length===0) && <h2>Create your first task</h2>}
       {isLoading ? (
         <Loader />
       ) : (

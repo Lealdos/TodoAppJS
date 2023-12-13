@@ -1,8 +1,7 @@
 import "./App.css";
-import { ToDoFilter, ToDoSearch, ToDoList, NavBar } from "components";
+import { ToDoFilter, ToDoSearch, ToDoList, NavBar,TodoForm } from "components";
 import { TodoProvider } from "provider/TodoContext/";
 import { ModalProvider } from "./components/Provider/Modal";
-import { TodoForm } from "./components/TodoForm";
 import { Modal } from "./components/Provider/Modal/modal";
 import { useModal } from "./assets/Hooks/useModal";
 
