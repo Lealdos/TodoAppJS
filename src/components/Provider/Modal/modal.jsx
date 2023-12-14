@@ -4,8 +4,8 @@ import { createPortal } from "react-dom";
 
 export function Modal({
   children,
-  openStatus ,
-  openItem ,
+  openStatus,
+  openItem,
   setOpenModal,
   setOpenItem,
 }) {
@@ -15,7 +15,9 @@ export function Modal({
   };
   return createPortal(
     <div>
-      <div className="allbutton">
+      
+        <div className="allbutton">
+          
         <span>{openStatus ? "ESC" : "Add task"}</span>
         <button
           className="CreateTodoButton"
@@ -26,7 +28,11 @@ export function Modal({
         >
           <AiOutlinePlusCircle />
         </button>
-        {openStatus && <div className="Modal">{children}</div> }
+        {openStatus && (
+          <div className="Modal" onClick={handlerOpenItem}>
+            {children}
+          </div>
+        )}
       </div>
     </div>,
     document.getElementById("modal")

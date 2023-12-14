@@ -4,11 +4,12 @@ import { FaGithub } from "react-icons/fa";
 import { GoSignIn, GoSignOut } from "react-icons/go";
 import { FaLinkedin } from "react-icons/fa6";
 import { Modal } from "components";
-import { useModal } from "../../assets/Hooks/useModal";
 import { AuthForm } from "components";
+import { useState } from "react";
 
 export function NavBar({ sesion = false }) {
-  const [openModal, setOpenModal, openAuth, setOpenAuth] = useModal();
+  const [openModal,setOpenModal] =useState(false)
+  const [openAuth, setOpenAuth] =useState(false)
   const handleClick = () => {
     setOpenModal(!openModal);
     setOpenAuth(!openAuth);
@@ -29,7 +30,7 @@ export function NavBar({ sesion = false }) {
           {sesion ? <GoSignOut size={20} /> : <GoSignIn size={20} />}
         </a>
         {openModal && openAuth && (
-          <Modal
+          <Modal 
             openStatus={openModal}
             setOpenModal={setOpenModal}
             openItem={openAuth}

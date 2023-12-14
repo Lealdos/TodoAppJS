@@ -3,11 +3,11 @@ import { ToDoFilter, ToDoSearch, ToDoList, NavBar,TodoForm } from "components";
 import { TodoProvider } from "provider/TodoContext/";
 import { ModalProvider } from "./components/Provider/Modal";
 import { Modal } from "./components/Provider/Modal/modal";
-import { useModal } from "./assets/Hooks/useModal";
+import { useState } from "react";
 
 function App() {
-  const [openModal, setopenModal, createFormOpen, setcreateFormOpen] =
-    useModal();
+    const [openModal,setOpenModal] =useState(false)
+    const [createFormOpen,setcreateFormOpen] =useState(false)
   return (
     <ModalProvider>
       <NavBar />
@@ -27,14 +27,14 @@ function App() {
 
           <Modal
             openStatus={openModal}
-            setOpenModal={setopenModal}
+            setOpenModal={setOpenModal}
             openItem={createFormOpen}
             setOpenItem={setcreateFormOpen}
           >
             {openModal && createFormOpen && (
               <TodoForm
                 openStatus={openModal}
-                setOpenModal={setopenModal}
+                setOpenModal={setOpenModal}
                 openForm={createFormOpen}
                 setOpenForm={setcreateFormOpen}
               />
