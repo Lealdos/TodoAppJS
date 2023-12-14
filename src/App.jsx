@@ -1,15 +1,14 @@
 import "./App.css";
-import { ToDoFilter, ToDoSearch, ToDoList, NavBar,TodoForm } from "components";
+import { ToDoFilter, ToDoSearch, ToDoList, NavBar, TodoForm } from "components";
 import { TodoProvider } from "provider/TodoContext/";
-import { ModalProvider } from "./components/Provider/Modal";
 import { Modal } from "./components/Provider/Modal/modal";
 import { useState } from "react";
 
 function App() {
-    const [openModal,setOpenModal] =useState(false)
-    const [createFormOpen,setcreateFormOpen] =useState(false)
+  const [openModal, setOpenModal] = useState(false);
+  const [createFormOpen, setcreateFormOpen] = useState(false);
   return (
-    <ModalProvider>
+    <>
       <NavBar />
       <div
         className="todoapp"
@@ -42,7 +41,7 @@ function App() {
           </Modal>
         </TodoProvider>
       </div>
-    </ModalProvider>
+    </>
   );
 }
 
