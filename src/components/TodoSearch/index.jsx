@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { TodoContext } from "provider/TodoContext/";
+import { TodoSearchContext } from "context/TodoContext/";
 
 function ToDoSearch() {
-  const {setSearchValue, searchValue } = useContext(TodoContext)
+  const {setSearchValue, searchValue } = useContext(TodoSearchContext)
   return (
     <div className="searchingfilter">
       <span>Search task:</span>

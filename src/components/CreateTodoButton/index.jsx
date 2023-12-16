@@ -1,22 +1,32 @@
+/* eslint-disable react/prop-types */
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { ModalContext } from "../Provider/Modal";
+import { ModalContext } from "context/Modal";
 import { useContext } from "react";
+import {Modal} from 'components'
 import "./index.css";
-export function CreateTodoButton() {
-  const { OpenModal, setOpenModal } = useContext(ModalContext);
+
+export function CreateTodoButton({active}) {
+  const { OpenModal, setOpenModal,openItem,setOpenItem } = useContext(ModalContext);
+  
   return (
     <div className="allbutton">
-      <p>
+      <span>
 
       {OpenModal? 'Esc' : 'Add task'}
-      </p>
+      </span>
+
       <button
         className="CreateTodoButton"
         style={{ cursor: "pointer", fontSize: "2.5em" }}
-        onClick={() => setOpenModal(!OpenModal)}
+        onClick={() => {setOpenModal(!OpenModal); setOpenItem(!openItem)}}
       >
         <AiOutlinePlusCircle />
       </button>
+      {OpenModal && openItem  && (
+          <Modal>
+              {active}  
+          </Modal>
+        )}
     </div>
   );
 }

@@ -4,10 +4,10 @@ import { useTodos } from "assets/Hooks";
 import { Loader } from "components/Loader";
 import "./index.css";
 import { useContext } from "react";
-import { TodoContext } from "provider/TodoContext/";
+import { TodoSearchContext } from "context/TodoContext/";
 
 function ToDoList() {
-  const { searchValue } = useContext(TodoContext)
+  const { searchValue } = useContext(TodoSearchContext)
   const { completeToDoHandler, handleRemove, todos, isLoading } = useTodos();
   const allTodos = todos ? todos : [];
   const completedTodos = allTodos.filter((Todo) => !!Todo.completed).length;
@@ -22,11 +22,13 @@ function ToDoList() {
     (firstTask, secondTaks) => firstTask.completed - secondTaks.completed
     );
     return (
+      
       <ul className="todo-list">
       <h2>
         Task done <span>{completedTodos}</span> of <span>{totalTodos}</span>
       </h2>
-      {(!isLoading && searchedTodos.length===0) && 'Create your first task'}
+      <br />
+      {(!isLoading && searchedTodos.length===0) && <h2>Create your first task</h2>}
       {isLoading ? (
         <Loader />
       ) : (

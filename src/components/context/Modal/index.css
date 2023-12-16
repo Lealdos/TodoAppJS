@@ -1,4 +1,18 @@
-button {
+.Modal {
+    background-color: rgba(219, 219, 219, 0.774);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 0, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+
+  button {
     color:greenyellow;
     cursor: "pointer";
     font-size: 40px;
@@ -29,14 +43,15 @@ button {
     transform: rotate(224deg);
   }
 
-  .allbutton{
+  .allbutton1{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1em;
     position: fixed;
     bottom: 2em;
-    right: 2em;
+    left: 2em;
+    z-index: 1;
     font-size: larger;
   }
 
@@ -46,10 +61,12 @@ button {
 
   .allbutton:hover  span{
     display: block;
+    z-index: 1;
   }
 
   @media (max-width: 580px) {
     .allbutton span{
       display: block;
+      z-index: 1;
     }
   }

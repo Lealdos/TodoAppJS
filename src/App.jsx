@@ -1,37 +1,49 @@
 import "./App.css";
-import { useContext } from "react";
-import {
-  Header,
-  CreateTodoButton,
-  ToDoFilter,
-  ToDoSearch,
-  ToDoList,Modal
-} from "components";
-import { TodoProvider } from "provider/TodoContext/";
-import { ModalContext } from "provider/Modal";
-import { TodoForm } from "./components/TodoForm";
+import { ToDoFilter, ToDoSearch, ToDoList, NavBar, TodoForm } from "components";
+import { TodoSearchProvider } from "context/TodoContext/";
+import { Modal } from "./components/context/Modal/modal";
+import { useState } from "react";
+import { UserProvider } from "./components/context/Auth/authIn";
 
 
 function App() {
-  const { OpenModal } = useContext(ModalContext);
+  const [openModal, setOpenModal] = useState(false);
+  const [createFormOpen, setcreateFormOpen] = useState(false);
   return (
-    <div
-      className="todoapp"
-      style={{ borderRadius: "20% 10%", padding: "0.2em",marginBottom:'0.5em'}}
-    >
-      <TodoProvider>
-        <Header />
-        <ToDoSearch />
-        <ToDoList />
-        <CreateTodoButton />
-        {OpenModal && (
-          <Modal>
-            <TodoForm />
+    <UserProvider>
+      <NavBar />
+      <div
+        className="todoapp"
+        style={{
+          borderRadius: "20% 10%",
+          padding: "0.2em",
+          marginBottom: "0.5em",
+        }}
+      >
+        <TodoSearchProvider>
+          <h1>Task List</h1>
+          <ToDoSearch on />
+          <ToDoList />
+          <ToDoFilter />
+
+          <Modal
+            openStatus={openModal}
+            setOpenModal={setOpenModal}
+            openItem={createFormOpen}
+            setOpenItem={setcreateFormOpen}
+          >
+            {openModal && createFormOpen && (
+              <TodoForm
+                openStatus={openModal}
+                setOpenModal={setOpenModal}
+                openForm={createFormOpen}
+                setOpenForm={setcreateFormOpen}
+              />
+            )}
           </Modal>
-        )}
-        <ToDoFilter />
-      </TodoProvider>
-    </div>
+        </TodoSearchProvider>
+      </div>
+    </UserProvider>
   );
 }
 
