@@ -15,7 +15,7 @@ export default defineConfig(({ command }) => {
       public: `${path.resolve(__dirname, "./public/")}`,
       pages: path.resolve(__dirname, "./src/pages"),
       assets: `${path.resolve(__dirname, "./src/assets")}`,
-      provider: `${path.resolve(__dirname, "./src/components/Provider")}`,
+      context: `${path.resolve(__dirname, "./src/components/context")}`,
       Hooks: `${path.resolve(__dirname, "./src/assets/Hooks")}`,
 
 

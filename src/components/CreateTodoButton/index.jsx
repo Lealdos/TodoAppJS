@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { ModalContext } from "../Provider/Modal";
+import { ModalContext } from "context/Modal";
 import { useContext } from "react";
 import {Modal} from 'components'
 import "./index.css";

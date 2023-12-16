@@ -4,11 +4,11 @@ import {
   getStoredTodos,
   storedTodos,
 } from 'assets/utils/KeepTodosPersiten';
-import { TodoContext } from '../../components/Provider/TodoContext';
+import { TodoSearchContext } from 'context/TodoContext';
 
 
 export function useTodos() {
-  const {todos,setTodos}=useContext(TodoContext)
+  const {todos,setTodos}=useContext(TodoSearchContext)
   const [isLoading,setIsLoading] = useState(true)
   const saveTodosLocalStorage = (newTodos) => {
     storedTodos(newTodos);

@@ -4,10 +4,10 @@ import { useTodos } from "assets/Hooks";
 import { Loader } from "components/Loader";
 import "./index.css";
 import { useContext } from "react";
-import { TodoContext } from "provider/TodoContext/";
+import { TodoSearchContext } from "context/TodoContext/";
 
 function ToDoList() {
-  const { searchValue } = useContext(TodoContext)
+  const { searchValue } = useContext(TodoSearchContext)
   const { completeToDoHandler, handleRemove, todos, isLoading } = useTodos();
   const allTodos = todos ? todos : [];
   const completedTodos = allTodos.filter((Todo) => !!Todo.completed).length;
