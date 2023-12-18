@@ -11,7 +11,7 @@ export const AuthForm = () => {
     const handlerMagiclink = async (userEmail) => {
         console.log(userEmail);
         try {
-            const { data } = await supabase.auth.signInWithOtp({
+            const { data, error } = await supabase.auth.signInWithOtp({
                 email: userEmail,
                 options: {
                     // set this to false if you do not want the user to be automatically signed up
@@ -19,6 +19,7 @@ export const AuthForm = () => {
                 },
             });
             setUser(data);
+            console.log(error);
         } catch (error) {
             console.error(error);
         }
