@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-
+import {useContext}from 'react'
 import './index.css';
-
+import { UserContext } from '../context/Auth/authIn';
 import { useTodos } from 'Hooks/useToDos';
 export function TodoForm({ openForm, setOpenForm, openStatus, setOpenModal }) {
     const { AddTodo } = useTodos();
+    const { createTask } = useContext(UserContext);
     const handleFormSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
@@ -13,6 +14,7 @@ export function TodoForm({ openForm, setOpenForm, openStatus, setOpenModal }) {
         AddTodo(formValues.Task);
         setOpenModal(!openStatus);
         setOpenForm(!openForm);
+        createTask(formValues.Task);
     };
 
     return (

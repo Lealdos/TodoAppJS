@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import { supabase } from "supabaseClient/client";
+
 import styles from "./index.module.css";
 import { FaGithub } from "react-icons/fa";
 import { GoSignIn, GoSignOut } from "react-icons/go";
@@ -9,14 +10,30 @@ import { Modal } from "components";
 import { AuthForm } from "components";
 import { UserContext } from "components/context/Auth/authIn";
 
-export function NavBar( ) {
-  const {user} = useContext(UserContext)
-  const [openModal,setOpenModal] =useState(false)
-  const [openAuth, setOpenAuth] =useState(false)
+export function NavBar() {
+  const { user, setUser } = useContext(UserContext);
+  const [openModal, setOpenModal] = useState(false);
+  const [openAuth, setOpenAuth] = useState(false);
   const handleClick = () => {
     setOpenModal(!openModal);
     setOpenAuth(!openAuth);
   };
+
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.log(error);
+    }
+    setUser(null);
+  };
+
+  useEffect(() => {
+    if((openAuth && openAuth ) && user) {
+      setOpenModal(!openModal);
+      setOpenAuth(!openAuth);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user])
   return (
     <div className={styles.header}>
       <a href="https://www.linkedin.com/in/jleonardod/">
@@ -28,19 +45,28 @@ export function NavBar( ) {
         Github
       </a>
       <nav className={styles.navbar}>
-        <a onClick={() => handleClick()}>
-          {user ? "Sing Out" : "Sing In"}
-          {user ? <GoSignOut size={20} /> : <GoSignIn size={20} />}
-        </a>
+        {user ? (
+          <a onClick={signOut}>
+            Sing Out <GoSignOut size={20} />
+          </a>
+        ) : (
+          <a onClick={handleClick}>
+            Sign In <GoSignIn size={20} />
+          </a>
+        )}
+
         {openModal && openAuth && (
-          <Modal 
+          <Modal
             openStatus={openModal}
             setOpenModal={setOpenModal}
             openItem={openAuth}
             setOpenItem={setOpenAuth}
           >
-              <AuthForm
-              />
+            <AuthForm
+              openStatus={openModal}
+              setOpenModal={setOpenModal}
+              openAuth={openAuth}
+              setOpenAuth={setOpenAuth} />
           </Modal>
         )}
       </nav>

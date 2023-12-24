@@ -45,6 +45,7 @@ h2 , h5 , .authForm a{
 .login input {
   border-radius: 0.4em;
   padding: 0.4rem;
+  margin: 0.5rem 0 0.8rem 0;
   border: 2px solid #ccc;
   width: 90%;
 }
