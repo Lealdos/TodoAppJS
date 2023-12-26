@@ -5,11 +5,13 @@ import { Loader } from 'components/Loader';
 import './index.css';
 import { useContext } from 'react';
 import { TodoSearchContext } from 'context/TodoContext/';
+import { UserContext } from 'components/context/Auth/authIn';
 
 function ToDoList() {
     const { searchValue } = useContext(TodoSearchContext);
+    const { user, tasks, deleteTask, updateTask } = useContext(UserContext);
     const { completeToDoHandler, handleRemove, todos, isLoading } = useTodos();
-    const allTodos = todos || [];
+    const allTodos = user ? tasks || [] : todos || [];
     const completedTodos = allTodos.filter((Todo) => !!Todo.completed).length;
     const totalTodos = allTodos.length;
     const searchedTodos = allTodos.filter((todo) => {
@@ -26,6 +28,7 @@ function ToDoList() {
         !isLoading && searchedTodos.length === 0 && searchValue.length < 1;
     const checkNoFound =
         !isLoading && searchedTodos.length === 0 && searchValue.length > 0;
+
     return (
         <ul className='todo-list'>
             <h2>
@@ -52,8 +55,16 @@ function ToDoList() {
                                 id={ToDo.id}
                                 completed={ToDo.completed}
                                 text={ToDo.text}
-                                onCompleted={() => completeToDoHandler(ToDo.id)}
-                                handleRemove={() => handleRemove(ToDo.id)}
+                                onCompleted={() =>
+                                    user
+                                        ? updateTask(ToDo.id, ToDo.completed)
+                                        : completeToDoHandler(ToDo.id)
+                                }
+                                handleRemove={() =>
+                                    user
+                                        ? deleteTask(ToDo.id)
+                                        : handleRemove(ToDo.id)
+                                }
                             />
                         </li>
                     );
