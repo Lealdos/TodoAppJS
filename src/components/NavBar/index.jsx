@@ -28,14 +28,6 @@ export function NavBar() {
         setUser(null);
     };
 
-    // useEffect(() => {
-    //     if (openAuth && openAuth && user) {
-    //         setOpenModal(!openModal);
-    //         setOpenAuth(!openAuth);
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [user]);
-
     return (
         <div className={styles.header}>
             <a href='https://www.linkedin.com/in/jleonardod/'>
