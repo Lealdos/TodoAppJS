@@ -9,7 +9,7 @@ import { UserContext } from 'components/context/Auth/authIn';
 
 function ToDoList() {
     const { searchValue } = useContext(TodoSearchContext);
-    const { user, tasks, deleteTask, updateTask } = useContext(UserContext);
+    const { user, tasks, deleteTask, updateTask,taskLoading } = useContext(UserContext);
     const { completeToDoHandler, handleRemove, todos, isLoading } = useTodos();
     const allTodos = user ? tasks || [] : todos || [];
     const completedTodos = allTodos.filter((Todo) => !!Todo.completed).length;
@@ -24,9 +24,9 @@ function ToDoList() {
         (firstTask, secondTask) => firstTask.completed - secondTask.completed
     );
 
-    const checkNoTask =
+    const checkNoTask = user? !taskLoading && allTodos.length === 0 :
         !isLoading && searchedTodos.length === 0 && searchValue.length < 1;
-    const checkNoFound =
+    const checkNoFound = user? !taskLoading && allTodos.length > 0 && searchedTodos.length === 0 :
         !isLoading && searchedTodos.length === 0 && searchValue.length > 0;
 
     return (
@@ -38,7 +38,7 @@ function ToDoList() {
             <br />
             {(checkNoTask && <h2>Create your first task</h2>) ||
                 (checkNoFound && <h2>Task no found </h2>)}
-            {isLoading ? (
+            {taskLoading ? (
                 <Loader />
             ) : (
                 sortedSearchedTodos.map((ToDo) => {

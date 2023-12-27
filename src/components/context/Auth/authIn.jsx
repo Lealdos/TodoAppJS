@@ -8,6 +8,11 @@ export const UserContext = createContext();
 // export function useAuth() {
 //   return useContext(UserContext)
 //   }
+Client ID: 141941307686-jniaqqfr6dlqcptughsla679tnml2f8i.apps.googleusercontent.com
+
+Client secret: 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
+
+
 */
 
 export function UserProvider({ children }) {
