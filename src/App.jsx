@@ -9,13 +9,14 @@ import { supabase } from 'supabaseClient/client';
 function App() {
     const [openModal, setOpenModal] = useState(false);
     const [createFormOpen, setCreateFormOpen] = useState(false);
-    const { user, getTasks, setUser } = useContext(UserContext);
+    const { user, getTasks, setUser, setProfile } = useContext(UserContext);
 
     useEffect(() => {
         supabase.auth.onAuthStateChange((event, session) => {
             if (event == 'SIGNED_IN' || session) {
                 setUser(session.user.id);
                 getTasks();
+                setProfile(session.user);
             }
         });
     }, [user, getTasks, setUser]);

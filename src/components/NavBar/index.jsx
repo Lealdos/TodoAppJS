@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { supabase } from 'supabaseClient/client';
 
 import styles from './index.module.css';
@@ -10,7 +10,7 @@ import { Modal, AuthForm } from 'components';
 import { UserContext } from 'components/context/Auth/authIn';
 
 export function NavBar() {
-    const { user, setUser } = useContext(UserContext);
+    const { user, setUser, profile } = useContext(UserContext);
     const [openModal, setOpenModal] = useState(false);
     const [openAuth, setOpenAuth] = useState(false);
     const handleClick = () => {
@@ -18,6 +18,8 @@ export function NavBar() {
         setOpenAuth(!openAuth);
     };
 
+    const userName = profile.user_metadata.user_name;
+    const userAvatar = profile.user_metadata.avatar_url;
     const signOut = async () => {
         const { error } = await supabase.auth.signOut();
         if (error) {
@@ -26,13 +28,14 @@ export function NavBar() {
         setUser(null);
     };
 
-    useEffect(() => {
-        if (openAuth && openAuth && user) {
-            setOpenModal(!openModal);
-            setOpenAuth(!openAuth);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user]);
+    // useEffect(() => {
+    //     if (openAuth && openAuth && user) {
+    //         setOpenModal(!openModal);
+    //         setOpenAuth(!openAuth);
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [user]);
+
     return (
         <div className={styles.header}>
             <a href='https://www.linkedin.com/in/jleonardod/'>
@@ -43,6 +46,10 @@ export function NavBar() {
                 <FaGithub size={20} />
                 Github
             </a>
+            <div className={styles.profile}>
+                <span>{userName}</span>
+                <img src={userAvatar} alt='profile' />
+            </div>
             <nav className={styles.navbar}>
                 {user ? (
                     <a onClick={signOut}>

@@ -8,15 +8,11 @@ export const UserContext = createContext();
 // export function useAuth() {
 //   return useContext(UserContext)
 //   }
-Client ID: 141941307686-jniaqqfr6dlqcptughsla679tnml2f8i.apps.googleusercontent.com
-
-Client secret: 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
-
-
 */
 
 export function UserProvider({ children }) {
     const [user, setUser] = useState(null);
+    const [profile, setProfile] = useState(null);
     const [tasks, setTasks] = useState([]);
     const [adding, setAdding] = useState(false);
     const [taskLoading, setTaskLoading] = useState(false);
@@ -124,6 +120,8 @@ export function UserProvider({ children }) {
             value={{
                 user,
                 setUser,
+                profile,
+                setProfile,
                 tasks,
                 createTask,
                 adding,
