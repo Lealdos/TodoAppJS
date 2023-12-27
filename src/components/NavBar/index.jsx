@@ -18,8 +18,8 @@ export function NavBar() {
         setOpenAuth(!openAuth);
     };
 
-    const userName = profile.user_metadata.user_name;
-    const userAvatar = profile.user_metadata.avatar_url;
+    const userName = profile?.user_metadata?.user_name;
+    const userAvatar = profile?.user_metadata?.avatar_url;
     const signOut = async () => {
         const { error } = await supabase.auth.signOut();
         if (error) {
