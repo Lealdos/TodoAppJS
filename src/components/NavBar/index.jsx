@@ -20,6 +20,7 @@ export function NavBar() {
 
     const userName = profile?.user_metadata?.user_name;
     const userAvatar = profile?.user_metadata?.avatar_url;
+    
     const signOut = async () => {
         const { error } = await supabase.auth.signOut();
         if (error) {
@@ -38,10 +39,12 @@ export function NavBar() {
                 <FaGithub size={20} />
                 Github
             </a>
-            <div className={styles.profile}>
+            {user &&
+                <div className={styles.profile}>
                 <span>{userName}</span>
                 <img src={userAvatar} alt='profile' />
-            </div>
+            </div>}
+
             <nav className={styles.navbar}>
                 {user ? (
                     <a onClick={signOut}>

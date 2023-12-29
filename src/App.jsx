@@ -1,3 +1,4 @@
+
 import './App.css';
 import { useState, useContext, useEffect } from 'react';
 import { ToDoFilter, ToDoSearch, ToDoList, NavBar, TodoForm } from 'components';
@@ -9,21 +10,24 @@ import { supabase } from 'supabaseClient/client';
 function App() {
     const [openModal, setOpenModal] = useState(false);
     const [createFormOpen, setCreateFormOpen] = useState(false);
-    const { user, getTasks, setUser, setProfile } = useContext(UserContext);
+    const {getTasks, setUser, setProfile } = useContext(UserContext);
 
     useEffect(() => {
-        supabase.auth.onAuthStateChange((event, session) => {
+        const {data }= supabase.auth.onAuthStateChange((event, session) => {
             if (event == 'SIGNED_IN' || session) {
-                setUser(session.user.id);
+                setUser((prev)=> prev ||session?.user);
                 getTasks();
-                setProfile(session.user);
+                setProfile(session?.user);
             }
+
         });
-    }, [user, getTasks, setUser]);
+        return ()=>data.subscription.unsubscribe()
+
+    }, [getTasks,setUser,setProfile]);
 
     return (
         <>
-            <NavBar />
+            <NavBar  />
             <div
                 className='todoapp'
                 style={{
