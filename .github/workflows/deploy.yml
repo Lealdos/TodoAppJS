@@ -42,9 +42,14 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build
-        run: npm run build
-          echo '${{secrets.VITE_SUPABASE_ANON_KEY}}'
-          echo '${{secrets.VITE_SUPABASE_URL}}'
+        run: |
+          npm run build
+          echo "${{secrets.VITE_SUPABASE_ANON_KEY}}"
+          echo "${{secrets.VITE_SUPABASE_URL}}"
+          echo "var anon ${{vars.VITE_SUPABASE_ANON_KEY}}"
+          echo "var url ${{vars.VITE_SUPABASE_URL}}"
+          
+
 
         env:
           VITE_SUPABASE_URL: ${{secrets.VITE_SUPABASE_URL}}
