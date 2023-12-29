@@ -21,8 +21,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  VITE_SUPABASE_URL: ${{secrets.VITE_SUPABASE_URL}}
-  VITE_SUPABASE_ANON_KEY: ${{secrets.VITE_SUPABASE_ANON_KEY}}
+  VITE_SUPABASE_URL: ${{vars.VITE_SUPABASE_URL}}
+  VITE_SUPABASE_ANON_KEY: ${{vars.VITE_SUPABASE_ANON_KEY}}
 
 jobs:
   # Single deploy job since we're just deploying
@@ -42,18 +42,10 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build
-        run: |
-          npm run build
-          echo "${{secrets.VITE_SUPABASE_ANON_KEY}}"
-          echo "${{secrets.VITE_SUPABASE_URL}}"
-          echo "var anon ${{vars.VITE_SUPABASE_ANON_KEY}}"
-          echo "var url ${{vars.VITE_SUPABASE_URL}}"
-          
-
-
+        run: npm run build
         env:
-          VITE_SUPABASE_URL: ${{secrets.VITE_SUPABASE_URL}}
-          VITE_SUPABASE_ANON_KEY: ${{secrets.VITE_SUPABASE_ANON_KEY}}
+          VITE_SUPABASE_URL: ${{vars.VITE_SUPABASE_URL}}
+          VITE_SUPABASE_ANON_KEY: ${{vars.VITE_SUPABASE_ANON_KEY}}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
