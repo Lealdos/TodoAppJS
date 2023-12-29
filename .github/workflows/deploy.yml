@@ -52,3 +52,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+        env:
+          apiKey: ${{ secrets.VITE_API_KEY }}
+          url_database: ${{ secrets.VITE_URL_DATABASE }}
