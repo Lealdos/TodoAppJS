@@ -18,6 +18,7 @@ export function NavBar() {
         setOpenAuth(!openAuth);
     };
 
+    const userDetalis = user?.user_metadata
     const userName = user?.user_metadata?.user_name;
     const userAvatar = user?.user_metadata?.avatar_url;
     
@@ -39,10 +40,10 @@ export function NavBar() {
                 <FaGithub size={20} />
                 Github
             </a>
-            {user &&
+            {userName &&
                 <div className={styles.profile}>
-                <span>{userName}</span>
-                <img src={userAvatar} alt='profile' />
+                <span>{userDetalis? userName : user?.email}</span>
+                {userDetalis && <img src={userAvatar} alt='profile' />}
             </div>}
 
             <nav className={styles.navbar}>
