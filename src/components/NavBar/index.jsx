@@ -18,7 +18,6 @@ export function NavBar() {
         setOpenAuth(!openAuth);
     };
 
-    const userDetalis = user?.user_metadata
     const userName = user?.user_metadata?.user_name;
     const userAvatar = user?.user_metadata?.avatar_url;
     
