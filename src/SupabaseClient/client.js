@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { createClient } from "@supabase/supabase-js";
-const url_database = import.meta.env.VITE_URL_DATABASE;
-const apiKey = import.meta.env.VITE_API_KEY;
+const VITE_SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const VITE_SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(url_database, apiKey);
+export const supabase = createClient(VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY);

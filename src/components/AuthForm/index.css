@@ -24,6 +24,7 @@ h2 , h5 , .authForm a{
   gap: 0.8em;
   position: fixed;
   top: 8em;
+
 }
 
 .thirdPartyAuth {
@@ -47,7 +48,7 @@ h2 , h5 , .authForm a{
   padding: 0.4rem;
   margin: 0.5rem 0 0.8rem 0;
   border: 2px solid #ccc;
-  width: 90%;
+  width: 92%;
 }
 .buttonStyle {
   display: flex;
@@ -55,14 +56,22 @@ h2 , h5 , .authForm a{
   justify-content: center;
   gap: 0.4rem;
   border-radius: 0.5rem;
+  font-family:  Helvetica;
+  font-size: 1rem;
 }
 
-.submitButton {
+#submitButton {
     filter: invert(1);
     background-color: rgb(20, 147, 206);
     color:#f3f1f1;
     border-radius: 0.5rem;
     width: 95%;
     box-shadow: 0px 5px 20px rgba(239, 239, 239, 0.5);
+    font-family:  Helvetica;
 }
 
+.logo {
+  filter: invert(1);
+  width: 120px;
+  height: 120px;
+} 

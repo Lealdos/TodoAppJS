@@ -20,6 +20,7 @@ button {
     appearance: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background:none;
 }
 
 body {
@@ -218,6 +219,7 @@ body {
     font-size: 30px;
     color: #949494;
     transition: color 0.2s ease-out;
+    background: none;
 }
 
 .todo-list li .destroy:hover,

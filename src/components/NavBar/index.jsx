@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useContext, useState } from 'react';
+import {  useState } from 'react';
 import { supabase } from 'supabaseClient/client';
 
 import styles from './index.module.css';
@@ -7,10 +7,10 @@ import { FaGithub } from 'react-icons/fa';
 import { GoSignIn, GoSignOut } from 'react-icons/go';
 import { FaLinkedin } from 'react-icons/fa6';
 import { Modal, AuthForm } from 'components';
-import { UserContext } from 'components/context/Auth/authIn';
+import {useAuth} from 'context/User'
 
 export function NavBar() {
-    const { user, setUser, profile } = useContext(UserContext);
+    const { user, setUser } = useAuth();
     const [openModal, setOpenModal] = useState(false);
     const [openAuth, setOpenAuth] = useState(false);
     const handleClick = () => {
@@ -18,8 +18,8 @@ export function NavBar() {
         setOpenAuth(!openAuth);
     };
 
-    const userName = profile?.user_metadata?.user_name;
-    const userAvatar = profile?.user_metadata?.avatar_url;
+    const userName = user?.user_metadata?.user_name;
+    const userAvatar = user?.user_metadata?.avatar_url;
     
     const signOut = async () => {
         const { error } = await supabase.auth.signOut();
@@ -35,7 +35,7 @@ export function NavBar() {
                 <FaLinkedin size={18} /> linkedin
             </a>
             <a href='https://github.com/lealdos'>
-                {' '}
+                {''}
                 <FaGithub size={20} />
                 Github
             </a>

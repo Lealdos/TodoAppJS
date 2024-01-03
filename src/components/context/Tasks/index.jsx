@@ -1,27 +1,30 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState, useCallback } from "react";
+import { createContext, useState, useCallback,useEffect } from "react";
 import { supabase } from "supabaseClient/client";
+import { useAuth } from "context/User";
 
-export const UserContext = createContext();
 
-/* ask to antonio if this is the right way to do it
-// export function useAuth() {
-    const ctx = useContext(UserContext)
+export const TasksContext = createContext();
+
+/* 
+ export function useTasks() {
+    const ctx = useContext(TasksContext)
     if (ctx === undefined) {
-      throw new Error('useAuth must be used within a UserProvider')
+      throw new Error('TaskProvider must be used within a TasksContext')
     }
-//   return ctx
-//   }
+ return ctx
+   }
 */
 
-export function UserProvider({ children }) {
-  const [user, setUser] = useState(null);
+export function TaskProvider({ children }) {
   const [profile, setProfile] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [taskLoading, setTaskLoading] = useState(false);
-  const [adding, setAdding] = useState(false);
- /*refactor el user provider and hacer pura gettask **/
-  const getTasks = useCallback(async () => {
+  const { user } = useAuth();
+
+  /*refactor el user provider and hacer pura gettask **/
+
+  const getTasks = useCallback(async (user = null) => {
     if (user?.id) {
       try {
         setTaskLoading(true);
@@ -30,19 +33,19 @@ export function UserProvider({ children }) {
           .select("id, text, completed")
           .eq("userId", user.id);
         if (error) {
-          //throw error;
+          throw error;
         }
         setTasks(data);
       } catch (error) {
-        //alert(error.error_description || error.message);
+        alert(error.error_description || error.message);
       } finally {
         setTaskLoading(false);
       }
     }
-  }, [user]);
+  }, []);
 
-  const createTask = async (taskName) => {
-    setAdding(true);
+  const createTask = useCallback( async (taskName, user) => {
+    setTaskLoading(true);
     try {
       const { error, data } = await supabase
         .from("Todos")
@@ -56,11 +59,12 @@ export function UserProvider({ children }) {
     } catch (error) {
       alert(error.error_description || error.message);
     } finally {
-      setAdding(false);
+      setTaskLoading(false);
     }
-  };
+  },[tasks]);
 
-  const deleteTask = async (id) => {
+  const deleteTask = useCallback(async (id, user) => {
+    setTaskLoading(true);
     try {
       const { error, data } = await supabase
         .from("Todos")
@@ -71,14 +75,15 @@ export function UserProvider({ children }) {
       if (error) {
         throw error;
       }
-
+      
       setTasks(tasks.filter((task) => task.id !== data[0].id));
+      setTaskLoading(false);
     } catch (error) {
       alert(error.error_description || error.message);
     }
-  };
+  },[tasks]);
 
-  const updateTask = async (id, done) => {
+  const updateTask = useCallback(async (id, done) => {
     try {
       const { error, data } = await supabase
         .from("Todos")
@@ -103,30 +108,21 @@ export function UserProvider({ children }) {
     } catch (error) {
       alert(error.error_description || error.message);
     }
-  };
+  },[tasks]);
 
-  /*
-    // useEffect(() => {
-    //     supabase.auth.onAuthStateChange((event, session) => {
-    //         if (event == 'SIGNED_IN' || session) {
-    //             console.log('SIGNED_IN', session);
-    //             setUser(session.user.id);
-    //         }
-    //     });
-    // }, [user, getTasks]);
-    
-    */
+
+  useEffect(() => {
+    getTasks(user);
+  }, [getTasks, user]);
+  
 
   return (
-    <UserContext.Provider
+    <TasksContext.Provider
       value={{
-        user,
-        setUser,
         profile,
         setProfile,
         tasks,
         createTask,
-        adding,
         taskLoading,
         getTasks,
         deleteTask,
@@ -134,6 +130,6 @@ export function UserProvider({ children }) {
       }}
     >
       {children}
-    </UserContext.Provider>
+    </TasksContext.Provider>
   );
 }
