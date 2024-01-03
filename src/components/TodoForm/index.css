@@ -36,7 +36,7 @@ textarea {
 
 textarea::placeholder {
   color: #a5a5a5;
-  font-family: "Montserrat";
+  font-family:  Helvetica, sans-serif;
   font-weight: 400;
 }
 
@@ -54,8 +54,8 @@ button {
   height: 48px;
   border-radius: 2px;
   border: 2px;
-  font-family: "Montserrat";
-  background: #dae7eb;
+  font-family:  Helvetica, sans-serif;
+  background: #fafafa;
   box-shadow: 0px 5px 20px rgba(250, 97, 97, 0.5);
   border-radius: 1.5em;
 }

@@ -20,7 +20,7 @@ button {
     appearance: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background:none;
+    background:white;
 }
 
 body {
