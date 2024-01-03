@@ -40,10 +40,10 @@ export function NavBar() {
                 <FaGithub size={20} />
                 Github
             </a>
-            {userName &&
+            {user &&
                 <div className={styles.profile}>
-                <span>{userDetalis? userName : user?.email}</span>
-                {userDetalis && <img src={userAvatar} alt='profile' />}
+                <span>{userName? userName : user?.email}</span>
+                {userAvatar && <img src={userAvatar} alt='profile' />}
             </div>}
 
             <nav className={styles.navbar}>
