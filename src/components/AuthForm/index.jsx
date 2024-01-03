@@ -34,12 +34,18 @@ export function AuthForm() {
     const signInWithGithub = async () => {
         await supabase.auth.signInWithOAuth({
             provider: 'github',
+            options: {
+                redirectTo: 'https://lealdos.github.io/TodoAppJS/',
+            },
         });
     };
 
     const signInWithGoogle = async () => {
         await supabase.auth.signInWithOAuth({
             provider: 'google',
+            options: {
+                redirectTo: 'https://lealdos.github.io/TodoAppJS/',
+            },
         });
     };
     return (
