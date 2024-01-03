@@ -15,8 +15,7 @@ export function AuthForm() {
         email: userEmail,
         options: {
           // set this to false if you do not want the user to be automatically signed up
-          emailRedirectTo:
-            "https://9000-monospace-todoapp-1699313960662.cluster-lknrrkkitbcdsvoir6wqg4mwt6.cloudworkstations.dev/?monospaceUid=304668&embedded=0",
+          emailRedirectTo: "https://lealdos.github.io/TodoAppJS/",
         },
       });
       setUser(data.user);
@@ -53,12 +52,11 @@ export function AuthForm() {
         </div>
       ) : (
         <form className="authForm" onSubmit={(e) => handleSubmit(e)}>
-           
-          <img src="https://cdn.discordapp.com/attachments/880928327345504277/1190709570671214613/leo_logo_transparente.png?ex=65a2c9b3&is=659054b3&hm=e2355e2ee5b6735238e7ac2b8e270dfad04a19068e7aaf06383a2adbf5cf68ee&"
-          
-          alt="logo"
-          className="logo" /> 
-    
+          <img
+            src="https://cdn.discordapp.com/attachments/880928327345504277/1190709570671214613/leo_logo_transparente.png?ex=65a2c9b3&is=659054b3&hm=e2355e2ee5b6735238e7ac2b8e270dfad04a19068e7aaf06383a2adbf5cf68ee&"
+            alt="logo"
+            className="logo"
+          />
 
           <h2>Task App</h2>
           <h5>Sign in today to use Task App on all your divice</h5>
@@ -67,7 +65,7 @@ export function AuthForm() {
               <FcGoogle style={{ filter: "invert(1)" }} size={20} /> Google
             </button>
             <button className="buttonStyle" onClick={() => signInWithGithub()}>
-              <FaGithub style={{ color: "gray" }} size={20}   />
+              <FaGithub style={{ color: "gray" }} size={20} />
               Github
             </button>
           </div>
