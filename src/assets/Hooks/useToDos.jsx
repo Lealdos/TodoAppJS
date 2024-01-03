@@ -1,15 +1,17 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect, useContext } from 'react';
-import { getStoredTodos, storedTodos } from 'assets/utils/KeepTodosPersiten';
+import { getStoredTodos, storedTodos } from 'assets/utils/KeepTodosPersistent';
 import { TodoSearchContext } from 'context/TodoContext';
 
 export function useTodos() {
     const { todos, setTodos } = useContext(TodoSearchContext);
     const [isLoading, setIsLoading] = useState(true);
+    const [adding, setAdding] = useState(false);
     const saveTodosLocalStorage = (newTodos) => {
         storedTodos(newTodos);
         setTodos(newTodos);
     };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -28,25 +30,25 @@ export function useTodos() {
     }, []);
 
     const AddTodo = (task, details = null) => {
-        const newTask = { id: todos.length + 1, text: task, completed: false };
-
+        const newTask = {
+            id: crypto.randomUUID(),
+            text: task,
+            completed: false,
+        };
         const newTodos = [...todos, newTask];
         saveTodosLocalStorage(newTodos);
-        console.log(newTodos);
     };
+
     const completeToDoHandler = (id) => {
         const newTodos = [...todos];
         const todosIndex = newTodos.findIndex((todos) => todos.id === id);
         newTodos[todosIndex].completed = !newTodos[todosIndex].completed;
         saveTodosLocalStorage(newTodos);
     };
+
     const handleRemove = (id) => {
         const newTodos = [...todos];
-
         const newTodoList = newTodos.filter((todo) => todo.id !== id);
-        newTodoList.forEach((item, index) => {
-            item.id = index + 1;
-        });
         saveTodosLocalStorage(newTodoList);
     };
 
@@ -57,5 +59,7 @@ export function useTodos() {
         AddTodo,
         saveTodosLocalStorage,
         isLoading,
+        adding,
+        setAdding,
     };
 }

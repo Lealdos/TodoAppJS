@@ -1,19 +1,17 @@
+
 import './App.css';
+import { useState } from 'react';
 import { ToDoFilter, ToDoSearch, ToDoList, NavBar, TodoForm } from 'components';
 import { TodoSearchProvider } from 'context/TodoContext/';
 import { Modal } from './components/context/Modal/modal';
-import { useEffect, useState, useContext } from 'react';
-import { UserContext } from 'context/Auth/authIn';
-
 function App() {
     const [openModal, setOpenModal] = useState(false);
     const [createFormOpen, setCreateFormOpen] = useState(false);
-    const { user } = useContext(UserContext);
 
-    useEffect(() => {}, [user]);
+
     return (
         <>
-            <NavBar />
+            <NavBar  />
             <div
                 className='todoapp'
                 style={{

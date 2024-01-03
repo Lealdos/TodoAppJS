@@ -18,7 +18,7 @@ cd TodoAppJS
 
  npm run dev 
 
-Open your browser and visit http://localhost:3000 to view the app.
+Open your browser and visit http://localhost:5173 to view the app.
 
 # Technologies Used
 #### React
