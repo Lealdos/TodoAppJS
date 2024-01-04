@@ -56,7 +56,7 @@ export function AuthForm() {
                 </div>
             ) : (
                 <form className='authForm' onSubmit={(e) => handleSubmit(e)}>
-                    <img src='/Devgado_logo.svg' alt='logo' className='logo' />
+                    <img src='./Devgado_logo.svg' alt='logo' className='logo' />
 
                     <h2>Task App</h2>
                     <h5>Sign in today to use Task App on all your divice</h5>
